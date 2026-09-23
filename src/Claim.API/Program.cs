@@ -1,7 +1,21 @@
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddHttpClient();
+// Dans Program.cs (avant builder.Build())
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowReact", policy =>
+    {
+        policy.AllowAnyOrigin()
+              .AllowAnyMethod()
+              .AllowAnyHeader();
+    });
+});
 
 var app = builder.Build();
+
+// Après builder.Build()
+app.UseCors("AllowReact");
+
 
 var claims = new List<Claim>();
 
