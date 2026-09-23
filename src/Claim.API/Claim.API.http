@@ -1,0 +1,6 @@
+@Claim.API_HostAddress = http://localhost:5170
+
+GET {{Claim.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
