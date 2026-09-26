@@ -16,15 +16,15 @@ public class AuthController : ControllerBase
     }
 
     [HttpPost("register")]
-    public async Task Register([FromBody] RegisterDto dto)
+    public async Task<IActionResult> Register([FromBody] RegisterDto dto)
     {
         var result = await _authService.RegisterAsync(dto);
-        if (result == null) return BadRequest("Cet utilisateur existe déjà.");
+        if (result == null) return BadRequest("Échec de l'inscription.");
         return Ok(result);
     }
 
     [HttpPost("login")]
-    public async Task Login([FromBody] LoginDto dto)
+    public async Task<IActionResult> Login([FromBody] LoginDto dto)
     {
         var result = await _authService.LoginAsync(dto);
         if (result == null) return Unauthorized("Identifiants invalides.");
