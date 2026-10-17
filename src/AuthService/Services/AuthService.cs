@@ -19,7 +19,7 @@ public class AuthService : IAuthService
             Email = request.Email,
             Role = request.Role
         };
-
+//ll
         var token = _tokenService.GenerateToken(user);
         return await Task.FromResult(new AuthResponseDto(token, user.Username, user.Email, user.Role));
     }
